@@ -19,3 +19,20 @@ const fetchPokemon = async (pokemon) => {
     }
 }
 
+const renderPokemon = async (pokemon) =>{
+    pokemonName.innerHTML = 'Carregando...'
+    pokemonID.innerHTML = ''
+    const data = await fetchPokemon(pokemon);
+    if (data) {
+    searchPokemon = data.id;
+    pokemonName.innerHTML = data.name;
+    pokemonID.innerHTML = data.id;
+    pokemonImage.style.display ='block';
+    pokemonImage.src = data['sprites']['versions']['generation-v']['black-white']['animated']['front_default'];
+    input.value = '';
+}else {
+    pokemonName.innerHTML = 'Not Found :('
+    pokemonID.innerHTML = '';
+    pokemonImage.style.display ='none';
+}
+}
